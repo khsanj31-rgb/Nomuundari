@@ -50,7 +50,7 @@ $('yesBtn').addEventListener('click',()=>{$('response').style.display='block';$(
 let n=0;function dodge(){n++;$('yesBtn').style.transform=`scale(${Math.min(1+n*.12,1.55)})`;$('noBtn').textContent=['Бодоод үз дээ 😅','Үнэхээр үгүй юу? 👀','Нэг боломж өгөөч 🥹'][Math.min(n-1,2)];if(n>2)$('noBtn').style.transform=`translate(${(Math.random()-.5)*60}px,${(Math.random()-.5)*20}px)`}
 $('noBtn').addEventListener('mouseenter',dodge);$('noBtn').addEventListener('click',dodge);
 $('rsvpForm').addEventListener('submit',async e=>{e.preventDefault();const endpoint='FORMSPREE_ENDPOINT_HERE';const status=$('rsvpStatus');const data={name:$('replyName').value||'Нэр бичээгүй',message:$('replyNote').value||'',answer:'Тийм ээ, би очно!',date:document.querySelector('input[name="date"]:checked')?.value||'2026-10-31',submitted_at:new Date().toISOString(),page:location.href};
-if(endpoint==='FORMSPREE_ENDPOINT_HERE'){status.style.display='block';status.textContent='Энэ сайт одоогоор туршилтын горимд байна. Хариуг имэйлээр хүлээн авахын тулд Formspree endpoint тохируулах шаардлагатай.';return}
+if(endpoint==='https://formspree.io/f/xppplgel'){status.style.display='block';status.textContent='Энэ сайт одоогоор туршилтын горимд байна. Хариуг имэйлээр хүлээн авахын тулд Formspree endpoint тохируулах шаардлагатай.';return}
 try{const r=await fetch(endpoint,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw new Error('submit failed');status.style.display='block';status.textContent='Хариу амжилттай илгээгдлээ. Баярлалаа! 🧡';$('rsvpForm').reset()}catch(err){status.style.display='block';status.textContent='Хариу илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоорой.'}});
 </script>
 </body></html>
